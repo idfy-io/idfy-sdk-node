@@ -5,10 +5,8 @@ export default interface IdentificationResponse {
   /** The first name of the user **/
   firstName?: string;
 
-
   /** The middle name of the user (not always available) **/
   middleName?: string;
-
 
   /** The last name of the user **/
   lastName?: string;
