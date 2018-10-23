@@ -1,3 +1,14 @@
 {
-  "extends": "tslint-config-airbnb"
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "variable-name": [
+      true,
+      "allow-leading-underscore"
+    ],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ]
+  }
 }
