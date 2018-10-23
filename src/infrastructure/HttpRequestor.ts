@@ -1,5 +1,7 @@
 import * as request from 'request';
-import HttpRequestMethod from '../models/HttpRequestMethod';
+import HttpRequestMethod from './HttpRequestMethod';
+import IdfyResponse from './IdfyResponse';
+import IdfyError from './IdfyError';
 
 export class HttpRequestor {
   public static async get<T>(url: string): Promise<T> {
@@ -17,13 +19,24 @@ export class HttpRequestor {
       request(options, (err, response, body) => {
         if (err || !this.isSuccess(response.statusCode)) {
           console.log(`${response.statusCode} request failed`);
-          reject(err);  // todo: return custom error object
+          reject(this.buildError(response, err, body));
         } else {
           console.log(`${response.statusCode} request succeeded`);
           return resolve(<T>JSON.parse(body));
         }
       });
     });
+  }
+
+  private static buildError(response: request.Response, err: any, body: any): any {
+    const idfyResponse: IdfyResponse = {
+      statusCode: response.statusCode,
+      responseJson: body,
+    };
+
+    const idfyError: IdfyError = body ? <IdfyError>JSON.parse(body) : {};
+
+    return { idfyResponse, idfyError };
   }
 
   private static isSuccess = (statusCode: number): boolean =>
