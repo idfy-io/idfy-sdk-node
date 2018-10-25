@@ -1,9 +1,11 @@
 export default interface IdfyResponse {
   statusCode?: number;
 
-  responseJson?: string;
+  body?: any;
 
   requestId?: string;
 
   requestDate?: Date;
+
+  requestUrl?: string;
 }

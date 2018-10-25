@@ -1,1 +1,2 @@
-export { default as IdentificationService } from './services/identification/IdentificationService';
+export * from './IdfyClient';
+export * from './services/identification';
