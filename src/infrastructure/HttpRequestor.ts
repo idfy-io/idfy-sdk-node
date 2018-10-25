@@ -20,6 +20,7 @@ export class HttpRequestor {
     const options: (request.CoreOptions & request.UriOptions) = {
       uri: url,
       method: method.toString(),
+      json: true,
     };
 
     if (token) {
@@ -29,7 +30,6 @@ export class HttpRequestor {
     }
 
     if (body) {
-      options.json = true;
       options.body = body;
     } else if (form) {
       options.form = form;
@@ -42,7 +42,7 @@ export class HttpRequestor {
         } else if (!this.isSuccess(response.statusCode)) {
           reject(this.buildError(response, body));
         } else {
-          return resolve(body ? <T>JSON.parse(body) : <T>{});
+          return resolve(<T>body);
         }
       });
     });
