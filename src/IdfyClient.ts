@@ -10,7 +10,7 @@ export class IdfyClient {
     this.identificationService = new IdentificationService();
   }
 
-  public get identification() {
+  public get identification(): IdentificationService {
     return this.identificationService;
   }
 }
