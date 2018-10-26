@@ -25,7 +25,12 @@ export class IdentificationService extends IdfyBaseService {
    * Retrieves the status of a single identification session.
    */
   public getSessionStatus(requestId: string): Promise<id.IdentificationCompleteResponse> {
-    const endpoint = `${this._endpointBase}/session?requestId=${requestId}`;
+    const endpoint = `${this._endpointBase}/session/status?requestId=${requestId}`;
     return super.get<id.IdentificationCompleteResponse>(endpoint);
+  }
+
+  public invalidateSession(requestId: string): Promise<void> {
+    const endpoint = `${this._endpointBase}/session/invalidate`;
+    return super.post(endpoint);
   }
 }
