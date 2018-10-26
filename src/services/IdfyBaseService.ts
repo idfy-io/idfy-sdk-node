@@ -32,7 +32,7 @@ export default abstract class IdfyBaseService {
       });
   }
 
-  public post<T>(endpoint: string, body: any): Promise<T> {
+  public post<T>(endpoint: string, body?: any): Promise<T> {
     return this.getToken()
       .then((token: any) => {
         return HttpRequestor.post<T>(
