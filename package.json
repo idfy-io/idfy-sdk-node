@@ -2,9 +2,13 @@
   "name": "idfy-sdk",
   "version": "0.1.0",
   "description": "Node.js SDK for Idfy REST API",
-  "repository": "https://github.com/Signereno/idfy-sdk-node.git",
   "author": "Idfy Norge AS",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/idfy-io/idfy-sdk-node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idfy-io/idfy-sdk-node.git"
+  },
   "keywords": [
     "idfy",
     "sdk",
@@ -19,7 +23,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
     "build": "tsc",
     "lint": "tslint -p tsconfig.json",
     "test": "yarn run build && yarn run lint"
