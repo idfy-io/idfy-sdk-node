@@ -13,7 +13,7 @@ export class IdentificationService extends IdfyBaseService {
   }
 
   /**
-   * Creates a new identification session
+   * Creates a new identification session.
    */
   public createSession(createIdentificationRequest: id.CreateIdentificationRequest):
     Promise<id.CreateIdentificationResponse> {
@@ -29,6 +29,9 @@ export class IdentificationService extends IdfyBaseService {
     return super.get<id.IdentificationCompleteResponse>(endpoint);
   }
 
+  /**
+   * Invalidates an identification session to avoid using the same request twice.
+   */
   public invalidateSession(requestId: string): Promise<void> {
     const endpoint = `${this._endpointBase}/session/invalidate`;
     return super.post(endpoint);
