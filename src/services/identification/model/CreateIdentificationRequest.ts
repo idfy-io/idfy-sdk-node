@@ -1,5 +1,5 @@
-import { IFrameSettings } from './iframeSettings';
-import { ReturnUrls } from './returnUrls';
+import { IFrameSettings } from './IframeSettings';
+import { ReturnUrls } from './ReturnUrls';
 
 export interface CreateIdentificationRequest {
   /**
