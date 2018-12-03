@@ -9,6 +9,15 @@
       true,
       "always",
       "ignore-bound-class-methods"
+    ],
+    "trailing-comma": [
+      false
+    ],
+    "max-line-length": [
+      true,
+      {
+        "limit": 120
+      }
     ]
   }
 }

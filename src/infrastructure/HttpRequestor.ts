@@ -3,6 +3,8 @@ import HttpRequestMethod from './HttpRequestMethod';
 import IdfyResponse from './IdfyResponse';
 
 export class HttpRequestor {
+  public static lastRequest?: (request.CoreOptions & request.UriOptions) = undefined;
+
   public static get<T>(url: string, token?: string): Promise<T> {
     return this.makeRequest<T>(url, HttpRequestMethod.GET, token);
   }
@@ -34,6 +36,8 @@ export class HttpRequestor {
     } else if (form) {
       options.form = form;
     }
+
+    this.lastRequest = options;
 
     return new Promise<T>((resolve, reject) => {
       request(options, (err, response, body) => {
