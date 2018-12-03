@@ -46,7 +46,7 @@ export class HttpRequestor {
         } else if (!this.isSuccess(response.statusCode)) {
           reject(this.buildError(response, body));
         } else {
-          return resolve(<T>body);
+          resolve(<T>body);
         }
       });
     });

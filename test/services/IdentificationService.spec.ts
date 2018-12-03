@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import IdfyConfiguration from '../../src/IdfyConfiguration';
 import { CreateIdentificationRequest, IdentificationService } from '../../src/services/identification';
 import { HttpRequestor } from '../../src/infrastructure/HttpRequestor';
+import * as request from 'request';
 
 IdfyConfiguration.setClientCredentials('idfy-test', 'foobar', []);
 IdfyConfiguration.baseUrl = 'http://localhost:5000';
@@ -9,6 +10,22 @@ IdfyConfiguration.baseUrl = 'http://localhost:5000';
 const service = new IdentificationService();
 
 describe('Identification Service', () => {
+  // Make sure that the Idfy Mock Server is running
+  before(() => {
+    try {
+      return new Promise<any>((resolve, reject) => {
+        request(IdfyConfiguration.baseUrl, (err) => {
+          if (err) {
+            return reject(err);
+          }
+          return resolve();
+        });
+      });
+    } catch {
+      throw Error(`Failed to connect to Idfy Mock Server at ${IdfyConfiguration.baseUrl}, make sure it is running`);
+    }
+  });
+
   describe('getSession', () => {
     it('sends the correct request', () => {
       return service.getSession('123').then((result) => {
