@@ -6,3 +6,7 @@ export * from './model/IframeSettings';
 export * from './model/ReturnUrls';
 export * from './model/CreateIdentificationResponse';
 export * from './model/IdentificationCompleteResponse';
+export * from './model/IdentificationLogItem';
+export * from './model/LogItemList';
+export * from './model/CreateBankIDMobileRequest';
+export * from './model/CreateBankIDMobileResponse';
