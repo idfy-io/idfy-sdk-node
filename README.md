@@ -16,7 +16,7 @@ All methods return a [Promise](https://developer.mozilla.org/en-US/docs/Web/Java
 
 The example below shows how to get the details of a single document.
 ```javascript
-// Initialize client with your client credentials and desired scopes
+// Initialize client with your credentials and desired scopes
 const client = new IdfyClient(
   'clientId',
   'clientSecret',
