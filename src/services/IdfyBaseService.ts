@@ -36,6 +36,12 @@ export default abstract class IdfyBaseService {
       `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
+  public async patch<T>(endpoint: string, body?: any): Promise<T> {
+    const token = await this.getToken();
+    return HttpRequestor.patch<T>(
+      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+  }
+
   public async put<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
     return HttpRequestor.put<T>(

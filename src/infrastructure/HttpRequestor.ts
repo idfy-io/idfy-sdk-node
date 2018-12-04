@@ -17,6 +17,10 @@ export class HttpRequestor {
     return this.makeRequest<T>(url, HttpRequestMethod.POST, token, null, form);
   }
 
+  public static patch<T>(url: string, body: any, token?: string): Promise<T> {
+    return this.makeRequest<T>(url, HttpRequestMethod.PATCH, token, body);
+  }
+
   public static put<T>(url: string, body: any, token?: string): Promise<T> {
     return this.makeRequest<T>(url, HttpRequestMethod.PUT, token, body);
   }
