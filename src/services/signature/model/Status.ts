@@ -7,13 +7,13 @@ export interface Status {
   /**
    * A list of all the completed files/packages for the main document.
    */
-  completedPackages?: Array<Status.CompletedPackagesEnum>;
+  completedPackages?: Status.CompletedPackagesEnum[];
 
   /**
    * A set of key-value pairs with all the completed packages for the signable attachments,
    * where the key is equal to the attachment's ID.
    */
-  attachmentPackages?: { [key: string]: Array<string>; };
+  attachmentPackages?: { [key: string]: Status.AttachmentPackagesEnum[]; };
 
 }
 export namespace Status {

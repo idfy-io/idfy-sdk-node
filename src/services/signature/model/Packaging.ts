@@ -6,7 +6,7 @@ export interface Packaging {
    * See our documentation for more information about these formats. The native package format is included automatically
    * (i.e. BankID SDO).
    */
-  signaturePackageFormats?: Array<Packaging.SignaturePackageFormatsEnum>;
+  signaturePackageFormats?: Packaging.SignaturePackageFormatsEnum[];
 
   /**
    * PAdES settings that can be defined if the `pades` package format is selected.
