@@ -1,7 +1,7 @@
 import IdfyConfiguration from './IdfyConfiguration';
 import { IdentificationService } from './services/identification';
 import { SignatureService } from './services/signature';
-import {NotificationService} from './services/notification';
+import { NotificationService } from './services/notification';
 
 export class IdfyClient {
   private readonly identificationService: IdentificationService;
