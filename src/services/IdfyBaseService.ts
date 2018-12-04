@@ -24,20 +24,22 @@ export default abstract class IdfyBaseService {
     this.scopes = scopes;
   }
 
-  public get<T>(endpoint: string): Promise<T> {
-    return this.getToken()
-      .then((token: any) => {
-        return HttpRequestor.get<T>(
-          `${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
-      });
+  public async get<T>(endpoint: string): Promise<T> {
+    const token = await this.getToken();
+    return HttpRequestor.get<T>(
+      `${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }
 
-  public post<T>(endpoint: string, body?: any): Promise<T> {
-    return this.getToken()
-      .then((token: any) => {
-        return HttpRequestor.post<T>(
-          `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
-      });
+  public async post<T>(endpoint: string, body?: any): Promise<T> {
+    const token = await this.getToken();
+    return HttpRequestor.post<T>(
+      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+  }
+
+  public async put<T>(endpoint: string, body?: any): Promise<T> {
+    const token = await this.getToken();
+    return HttpRequestor.put<T>(
+      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
   private getToken(): Promise<any> {

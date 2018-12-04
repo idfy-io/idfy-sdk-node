@@ -17,6 +17,10 @@ export class HttpRequestor {
     return this.makeRequest<T>(url, HttpRequestMethod.POST, token, null, form);
   }
 
+  public static put<T>(url: string, body: any, token?: string): Promise<T> {
+    return this.makeRequest<T>(url, HttpRequestMethod.PUT, token, body);
+  }
+
   private static makeRequest<T>(url: string, method: HttpRequestMethod, token?: string,
                                 body?: any, form?: { [key: string]: any }): Promise<T> {
     const options: (request.CoreOptions & request.UriOptions) = {

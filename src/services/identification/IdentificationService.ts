@@ -44,7 +44,7 @@ export class IdentificationService extends IdfyBaseService {
    * @param requestId
    */
   public invalidateSession(requestId: string): Promise<void> {
-    return super.post(`${this._endpointBase}/session/invalidate`);
+    return super.put(`${this._endpointBase}/session/invalidate`);
   }
 
   /**
