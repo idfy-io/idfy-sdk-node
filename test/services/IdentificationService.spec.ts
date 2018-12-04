@@ -11,7 +11,8 @@ const service = new IdentificationService();
 
 describe('Identification Service', () => {
   // Make sure that the Idfy Mock Server is running
-  before(() => {
+  before(function () {
+    this.timeout(5000);
     try {
       return new Promise<any>((resolve, reject) => {
         request(IdfyConfiguration.baseUrl, (err) => {
