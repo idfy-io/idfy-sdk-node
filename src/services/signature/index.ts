@@ -1,5 +1,6 @@
 export * from './SignatureService';
 export * from './model/Advanced';
+export * from './model/Attachment';
 export * from './model/AttachmentOptions';
 export * from './model/Authentication';
 export * from './model/CanceledReceipt';
@@ -19,8 +20,7 @@ export * from './model/ExtendedDocumentSignature';
 export * from './model/ExtraInfoDocumentRequest';
 export * from './model/ExtraInfoSignerRequest';
 export * from './model/FinalReceipt';
-export * from './model/Link';
-export * from './model/Links';
+export * from './model/ResourceLink';
 export * from './model/ManualReminder';
 export * from './model/Mobile';
 export * from './model/Notification';

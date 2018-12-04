@@ -1,5 +1,6 @@
 import { HttpRequestor } from '../infrastructure/HttpRequestor';
 import IdfyConfiguration from '../IdfyConfiguration';
+import HttpRequestMethod from '../infrastructure/HttpRequestMethod';
 
 interface OAuthToken {
   accessToken: string;
@@ -26,26 +27,27 @@ export default abstract class IdfyBaseService {
 
   public async get<T>(endpoint: string): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.get<T>(
-      `${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
+    return HttpRequestor.get<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }
 
   public async post<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.post<T>(
-      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.post<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
   public async patch<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.patch<T>(
-      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.patch<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
   public async put<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.put<T>(
-      `${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.put<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+  }
+
+  public async delete(endpoint: string): Promise<void> {
+    const token = await this.getToken();
+    return HttpRequestor.delete(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }
 
   private getToken(): Promise<any> {

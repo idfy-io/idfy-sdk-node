@@ -3,7 +3,7 @@ import { Advanced } from './Advanced';
 import { DataToSign } from './DataToSign';
 import { ContactDetails } from './ContactDetails';
 import { Status } from './Status';
-import { Link } from './Link';
+import { ResourceLink } from './ResourceLink';
 
 export interface Document {
   /**
@@ -16,12 +16,15 @@ export interface Document {
    */
   signers?: Signer[];
 
+  /**
+   * The status of the document.
+   */
   status?: Status;
 
   /**
    * HATEOAS extra info links retrieved for the document.
    */
-  links?: Link[];
+  links?: ResourceLink[];
 
   /**
    * The title of the document which will be presented to the user.

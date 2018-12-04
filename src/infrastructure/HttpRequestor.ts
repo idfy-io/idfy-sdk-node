@@ -25,6 +25,10 @@ export class HttpRequestor {
     return this.makeRequest<T>(url, HttpRequestMethod.PUT, token, body);
   }
 
+  public static delete(url: string, token?: string): Promise<void> {
+    return this.makeRequest<void>(url, HttpRequestMethod.DELETE, token);
+  }
+
   private static makeRequest<T>(url: string, method: HttpRequestMethod, token?: string,
                                 body?: any, form?: { [key: string]: any }): Promise<T> {
     const options: (request.CoreOptions & request.UriOptions) = {

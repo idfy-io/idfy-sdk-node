@@ -1,5 +1,5 @@
 export default class APIHelper {
-  public static appendQueryParams(url: string, params: { [key: string]: any }): string {
+  public static appendQueryParams(url: string, params: any): string {
     const q = [];
     for (const p in params) {
       if (params.hasOwnProperty(p) && params[p]) {

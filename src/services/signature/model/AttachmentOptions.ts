@@ -1,4 +1,4 @@
-export interface AttachmentRequestWrapper {
+export interface AttachmentOptions {
   /**
    * Filename with file extension. We only support PDF for attachments, set `convertToPdf` to `true`
    * if you have a convertible file type.
