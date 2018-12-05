@@ -25,32 +25,32 @@ export default abstract class IdfyBaseService {
     this.scopes = scopes;
   }
 
-  public async get<T>(endpoint: string): Promise<T> {
+  protected async get<T>(endpoint: string): Promise<T> {
     const token = await this.getToken();
     return HttpRequestor.get<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }
 
-  public async getBuffer(endpoint: string): Promise<Buffer> {
+  protected async getBuffer(endpoint: string): Promise<Buffer> {
     const token = await this.getToken();
     return HttpRequestor.getBuffer(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }
 
-  public async post<T>(endpoint: string, body?: any): Promise<T> {
+  protected async post<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
     return HttpRequestor.post<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
-  public async patch<T>(endpoint: string, body?: any): Promise<T> {
+  protected async patch<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
     return HttpRequestor.patch<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
-  public async put<T>(endpoint: string, body?: any): Promise<T> {
+  protected async put<T>(endpoint: string, body?: any): Promise<T> {
     const token = await this.getToken();
     return HttpRequestor.put<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
   }
 
-  public async delete(endpoint: string): Promise<void> {
+  protected async delete(endpoint: string): Promise<void> {
     const token = await this.getToken();
     return HttpRequestor.delete(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
   }

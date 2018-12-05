@@ -4,7 +4,7 @@
 A Node.js SDK for simple integration with the Idfy REST API.
 
 ## Installation
-	npm install idfy-sdk --save 
+	npm install @idfy/sdk --save 
 
 ## Documentation
 - [Idfy REST API Reference](https://developer.idfy.io/api)

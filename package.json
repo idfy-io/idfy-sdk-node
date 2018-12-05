@@ -1,5 +1,5 @@
 {
-  "name": "idfy-sdk",
+  "name": "@idfy/sdk",
   "version": "0.1.0",
   "description": "Node.js SDK for Idfy REST API",
   "author": "Idfy Norge AS",
