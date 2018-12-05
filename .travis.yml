@@ -33,3 +33,10 @@ install:
 script:
   - yarn
   - yarn test
+
+deploy:
+  # Create GitHub release on new version:
+  - provider: releases
+    api_key: $GITHUB_OAUTH_TOKEN
+    on:
+      tags: true
