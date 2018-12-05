@@ -39,8 +39,19 @@ $newVersion = "$currentMajor.$currentMinor.$currentPatch";
 
 Write-Host "New version: $newVersion" -ForegroundColor Yellow
 
+Write-Host "Enter the new version to confirm release."
+
+$confirmedVersion = Read-Host
+
+if ($confirmedVersion -ne $newVersion) {
+	Write-Host "Incorrect version. Release canceled" -ForegroundColor Red
+	exit 1
+}
+
 # Update package.json and create release-commit and tag
 npm version $newVersion -m "Release %s"
+
+
 
 # Push release-commit and tag
 git push origin master
