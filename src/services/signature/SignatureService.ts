@@ -204,4 +204,16 @@ export class SignatureService extends IdfyBaseService {
   public listAttachments(documentId: string): Promise<Attachment[]> {
     return super.get<Attachment[]>(`${this._endpointBase}/documents/${documentId}/attachments`);
   }
+
+  /**
+   * Retrieves the signed document file.
+   * @param documentId
+   * @param fileFormat
+   */
+  public getFile(documentId: string, fileFormat: string): Promise<Buffer> {
+    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files`, {
+      fileFormat
+    });
+    return super.getBuffer(url);
+  }
 }

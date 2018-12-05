@@ -1,5 +1,4 @@
 import { DocumentSignature } from './DocumentSignature';
-import { Link } from './Link';
 import { RedirectSettings } from './RedirectSettings';
 import { SignatureType } from './SignatureType';
 import { SignerInfo } from './SignerInfo';
@@ -7,6 +6,7 @@ import { Authentication } from './Authentication';
 import { ExtraInfoSignerRequest } from './ExtraInfoSignerRequest';
 import { UI } from './UI';
 import { Notifications } from './Notifications';
+import { ResourceLink } from './ResourceLink';
 
 export interface Signer {
   /**
@@ -27,7 +27,7 @@ export interface Signer {
   /**
    * HATEOAS extrainfo links retrieved for signer.
    */
-  links?: Link[];
+  links?: ResourceLink[];
 
   /**
    * Your reference for the signer.

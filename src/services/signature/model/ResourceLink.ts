@@ -1,4 +1,4 @@
-import { Link } from '../../../model/Link';
+import { Link } from '../../../model';
 
 export interface ResourceLink extends Link {
   resourceStatus?: ResourceLink.StatusEnum;

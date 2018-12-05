@@ -1,58 +1,98 @@
 import * as request from 'request';
 import HttpRequestMethod from './HttpRequestMethod';
 import IdfyResponse from './IdfyResponse';
+import HttpRequestOptions from './HttpRequestOptions';
 
 export class HttpRequestor {
   public static lastRequest?: (request.CoreOptions & request.UriOptions) = undefined;
 
   public static get<T>(url: string, token?: string): Promise<T> {
-    return this.makeRequest<T>(url, HttpRequestMethod.GET, token);
+    return this.makeRequest<T>({
+      url,
+      token,
+      method: HttpRequestMethod.GET,
+    });
+  }
+
+  public static getBuffer(url: string, token?: string): Promise<Buffer> {
+    return this.makeRequest<Buffer>({
+      url,
+      token,
+      method: HttpRequestMethod.GET,
+      disableEncoding: true
+    });
   }
 
   public static post<T>(url: string, body: any, token?: string): Promise<T> {
-    return this.makeRequest<T>(url, HttpRequestMethod.POST, token, body);
+    return this.makeRequest<T>({
+      url,
+      token,
+      body,
+      method: HttpRequestMethod.POST,
+    });
   }
 
   public static postForm<T>(url: string, form: { [key: string]: any }, token?: string) {
-    return this.makeRequest<T>(url, HttpRequestMethod.POST, token, null, form);
+    return this.makeRequest<T>({
+      url,
+      token,
+      form,
+      method: HttpRequestMethod.POST
+    });
   }
 
   public static patch<T>(url: string, body: any, token?: string): Promise<T> {
-    return this.makeRequest<T>(url, HttpRequestMethod.PATCH, token, body);
+    return this.makeRequest<T>({
+      url,
+      token,
+      body,
+      method: HttpRequestMethod.PATCH
+    });
   }
 
   public static put<T>(url: string, body: any, token?: string): Promise<T> {
-    return this.makeRequest<T>(url, HttpRequestMethod.PUT, token, body);
+    return this.makeRequest<T>({
+      url,
+      token,
+      body,
+      method: HttpRequestMethod.PUT
+    });
   }
 
   public static delete(url: string, token?: string): Promise<void> {
-    return this.makeRequest<void>(url, HttpRequestMethod.DELETE, token);
+    return this.makeRequest<void>({
+      url,
+      token,
+      method: HttpRequestMethod.DELETE
+    });
   }
 
-  private static makeRequest<T>(url: string, method: HttpRequestMethod, token?: string,
-                                body?: any, form?: { [key: string]: any }): Promise<T> {
-    const options: (request.CoreOptions & request.UriOptions) = {
+  private static makeRequest<T>(options: HttpRequestOptions): Promise<T> {
+    const { url, method, token, body, form, disableEncoding } = options;
+
+    const reqOptions: (request.CoreOptions & request.UriOptions) = {
       uri: url,
       method: method.toString(),
       json: true,
+      encoding: disableEncoding ? null : undefined
     };
 
     if (token) {
-      options.headers = {
+      reqOptions.headers = {
         Authorization: `Bearer ${token}`,
       };
     }
 
     if (body) {
-      options.body = body;
+      reqOptions.body = body;
     } else if (form) {
-      options.form = form;
+      reqOptions.form = form;
     }
 
-    this.lastRequest = options;
+    this.lastRequest = reqOptions;
 
     return new Promise<T>((resolve, reject) => {
-      request(options, (err, response, body) => {
+      request(reqOptions, (err, response, body) => {
         if (err) {
           reject(err);
         } else if (!this.isSuccess(response.statusCode)) {

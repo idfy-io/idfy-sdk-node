@@ -44,5 +44,6 @@ export * from './model/SMS';
 export * from './model/SocialSecurityNumber';
 export * from './model/SpecialProperties';
 export * from './model/Status';
+export * from './model/Styling';
 export * from './model/TimeToLive';
 export * from './model/UI';
