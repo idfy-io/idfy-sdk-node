@@ -5,7 +5,7 @@ import {
   Document,
   DocumentCreateOptions,
   DocumentStatusSummary,
-  DocumentUpdateOptions,
+  DocumentUpdateOptions, ManualReminder, NotificationLogItem,
   Signer,
   SignerOptions
 } from './';
@@ -215,5 +215,76 @@ export class SignatureService extends IdfyBaseService {
       fileFormat
     });
     return super.getBuffer(url);
+  }
+
+  /**
+   * Retrieves the signed document file for the specified signer.
+   * @param documentId
+   * @param signerId
+   * @param fileFormat
+   */
+  public getFileForSigner(documentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
+    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/signers/${signerId}`, {
+      fileFormat
+    });
+    return super.getBuffer(url);
+  }
+
+  /**
+   * Retrieves the attachment file.
+   * @param documentId
+   * @param attachmentId
+   * @param fileFormat
+   */
+  public getAttachmentFile(documentId: string, attachmentId: string, fileFormat: string): Promise<Buffer> {
+    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/attachments/${attachmentId}`, {
+      fileFormat
+    });
+    return super.getBuffer(url);
+  }
+
+  /**
+   * Retrieves the attachment file for the specified signer.
+   * @param documentId
+   * @param attachmentId
+   * @param signerId
+   * @param fileFormat
+   */
+  public getAttachmentFileForSigner(documentId: string, attachmentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
+    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/attachments/${attachmentId}/signers/${signerId}`, {
+      fileFormat
+    });
+    return super.getBuffer(url);
+  }
+
+  /**
+   * Returns a list of all notifications that has been sent / attempted sent for a document.
+   * @param documentId
+   */
+  public listNotifications(documentId: string): Promise<NotificationLogItem> {
+    return super.get<NotificationLogItem>(`${this._endpointBase}/documents/${documentId}/notifications`);
+  }
+
+  /**
+   * Sends a reminder to the specified signers.
+   * @param documentId
+   * @param manualReminder
+   */
+  public sendReminders(documentId: string, manualReminder: ManualReminder): Promise<ManualReminder> {
+    return super.post(`${this._endpointBase}/documents/${documentId}/notifications/reminder`, manualReminder);
+  }
+
+  /**
+   * Returns a list of all color themes that can be used in the signature application.
+   */
+  public listThemes(): Promise<string[]> {
+    return super.get<string[]>(`${this._endpointBase}/themes/list/themes`);
+  }
+
+  /**
+   * Returns a list of all spinners that can be used in the signature application.
+   */
+  public listSpinners(): Promise<string[]> {
+    return super.get<string[]>(`${this._endpointBase}/themes/list/spinners`);
   }
 }
