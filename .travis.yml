@@ -40,3 +40,9 @@ deploy:
     api_key: $GITHUB_OAUTH_TOKEN
     on:
       tags: true
+  # Push package to npmjs.com
+  - provider: npm
+    email: support@idfy.io
+    api_key: $NPM_TOKEN
+    on:
+      tags: true

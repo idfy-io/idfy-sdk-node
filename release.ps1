@@ -51,8 +51,6 @@ if ($confirmedVersion -ne $newVersion) {
 # Update package.json and create release-commit and tag
 npm version $newVersion -m "Release %s"
 
-
-
 # Push release-commit and tag
 git push origin master
 git push origin $tag
