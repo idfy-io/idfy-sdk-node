@@ -1,6 +1,6 @@
 # Idfy Node.js SDK
 [![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-node.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-node) 
-![npm (scoped)](https://img.shields.io/npm/v/@idfy/sdk.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@idfy/sdk.svg)](https://www.npmjs.com/package/@idfy/sdk)
 
 A Node.js SDK for simple integration with the Idfy REST API.
 
@@ -17,7 +17,7 @@ All methods return a [Promise](https://developer.mozilla.org/en-US/docs/Web/Java
 
 The example below shows how to get the details of a single document.
 ```javascript
-const { IdfyClient } = require('idfy-sdk');
+const { IdfyClient } = require('@idfy/sdk');
 
 // Initialize client with your credentials and desired scopes
 const client = new IdfyClient(
@@ -37,7 +37,7 @@ client.signature.getDocument('documentId')
 The Idfy SDK comes with built-in typings.
 
 ```javascript
-import { IdfyClient } from 'idfy-sdk';
+import { IdfyClient } from '@idfy/sdk';
 
 const client: IdfyClient = new IdfyClient(/* ... /*);
 ```
