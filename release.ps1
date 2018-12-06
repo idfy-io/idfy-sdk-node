@@ -53,4 +53,4 @@ npm version $newVersion -m "Release %s"
 
 # Push release-commit and tag
 git push origin master
-git push origin $tag
+git push origin v$newVersion
