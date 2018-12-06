@@ -13,6 +13,7 @@ export * from './model/Document';
 export * from './model/DocumentCreateOptions';
 export * from './model/DocumentSignature';
 export * from './model/DocumentStatusSummary';
+export * from './model/DocumentSummary';
 export * from './model/DocumentUpdateOptions';
 export * from './model/Email';
 export * from './model/ExpiredReceipt';

@@ -7,3 +7,4 @@ export * from './model/WebhookConfig';
 export * from './model/WebhookResponse';
 export * from './model/WebhookUpdateOptions';
 export * from './model/WebhookDelivery';
+export * from './model/WebhookCreateOptions';

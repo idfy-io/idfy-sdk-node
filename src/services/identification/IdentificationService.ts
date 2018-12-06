@@ -1,22 +1,24 @@
 import IdfyBaseService from '../IdfyBaseService';
+import Urls from '../../infrastructure/Urls';
 import {
-  CreateBankIDMobileRequest, CreateBankIDMobileResponse,
+  CreateBankIDMobileRequest,
+  CreateBankIDMobileResponse,
   CreateIdentificationRequest,
   CreateIdentificationResponse,
-  IdentificationCompleteResponse, IdentificationLogItem,
-  IdentificationResponse, LogItemList,
+  IdentificationCompleteResponse,
+  IdentificationLogItem,
+  IdentificationResponse,
+  LogItemList,
 } from './';
 
 export class IdentificationService extends IdfyBaseService {
-  private readonly _endpointBase: string = 'identification';
-
   /**
    * Retrieves the response of a single identification session.
    * @param requestId
    * @param metaData
    */
   public getSession(requestId: string, metaData?: boolean): Promise<IdentificationResponse> {
-    const endpoint = `${this._endpointBase}/session?requestId=${requestId}`;
+    const endpoint = `${Urls.identification}/session?requestId=${requestId}`;
     return super.get<IdentificationResponse>(endpoint);
   }
 
@@ -27,7 +29,7 @@ export class IdentificationService extends IdfyBaseService {
   public createSession(createIdentificationRequest: CreateIdentificationRequest):
     Promise<CreateIdentificationResponse> {
     return super.post<CreateIdentificationResponse>(
-      `${this._endpointBase}/session`, createIdentificationRequest);
+      `${Urls.identification}/session`, createIdentificationRequest);
   }
 
   /**
@@ -35,7 +37,7 @@ export class IdentificationService extends IdfyBaseService {
    * @param requestId
    */
   public getSessionStatus(requestId: string): Promise<IdentificationCompleteResponse> {
-    const endpoint = `${this._endpointBase}/session/status?requestId=${requestId}`;
+    const endpoint = `${Urls.identification}/session/status?requestId=${requestId}`;
     return super.get<IdentificationCompleteResponse>(endpoint);
   }
 
@@ -44,7 +46,7 @@ export class IdentificationService extends IdfyBaseService {
    * @param requestId
    */
   public invalidateSession(requestId: string): Promise<void> {
-    return super.put(`${this._endpointBase}/session/invalidate`);
+    return super.put(`${Urls.identification}/session/invalidate`);
   }
 
   /**
@@ -52,7 +54,7 @@ export class IdentificationService extends IdfyBaseService {
    * @param requestId
    */
   public getLogEntry(requestId: string): Promise<IdentificationLogItem> {
-    return super.get<IdentificationLogItem>(`${this._endpointBase}/log/requestId/${requestId}`);
+    return super.get<IdentificationLogItem>(`${Urls.identification}/log/requestId/${requestId}`);
   }
 
   /**
@@ -77,7 +79,7 @@ export class IdentificationService extends IdfyBaseService {
     name?: string,
     skip?: number,
     pageSize?: number): Promise<LogItemList> {
-    return super.get<LogItemList>(`${this._endpointBase}/log/filter/${year}`);
+    return super.get<LogItemList>(`${Urls.identification}/log/filter/${year}`);
   }
 
   /**
@@ -86,7 +88,7 @@ export class IdentificationService extends IdfyBaseService {
    */
   public createBankIdMobileSession(createBankIdMobileRequest: CreateBankIDMobileRequest):
     Promise<CreateBankIDMobileResponse> {
-    const endpoint = `${this._endpointBase}/no/bankid/mobile`;
+    const endpoint = `${Urls.identification}/no/bankid/mobile`;
     return super.post<CreateBankIDMobileResponse>(endpoint, createBankIdMobileRequest);
   }
 }

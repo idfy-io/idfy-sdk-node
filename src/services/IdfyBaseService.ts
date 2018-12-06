@@ -1,5 +1,6 @@
 import { HttpRequestor } from '../infrastructure/HttpRequestor';
 import IdfyConfiguration from '../IdfyConfiguration';
+import Urls from '../infrastructure/Urls';
 
 interface OAuthToken {
   accessToken: string;
@@ -24,34 +25,34 @@ export default abstract class IdfyBaseService {
     this.scopes = scopes;
   }
 
-  protected async get<T>(endpoint: string): Promise<T> {
+  protected async get<T>(url: string): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.get<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
+    return HttpRequestor.get<T>(url, token.access_token);
   }
 
-  protected async getBuffer(endpoint: string): Promise<Buffer> {
+  protected async getBuffer(url: string): Promise<Buffer> {
     const token = await this.getToken();
-    return HttpRequestor.getBuffer(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
+    return HttpRequestor.getBuffer(url, token.access_token);
   }
 
-  protected async post<T>(endpoint: string, body?: any): Promise<T> {
+  protected async post<T>(url: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.post<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.post<T>(url, body, token.access_token);
   }
 
-  protected async patch<T>(endpoint: string, body?: any): Promise<T> {
+  protected async patch<T>(url: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.patch<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.patch<T>(url, body, token.access_token);
   }
 
-  protected async put<T>(endpoint: string, body?: any): Promise<T> {
+  protected async put<T>(url: string, body?: any): Promise<T> {
     const token = await this.getToken();
-    return HttpRequestor.put<T>(`${IdfyConfiguration.baseUrl}/${endpoint}`, body, token.access_token);
+    return HttpRequestor.put<T>(url, body, token.access_token);
   }
 
-  protected async delete(endpoint: string): Promise<void> {
+  protected async delete(url: string): Promise<void> {
     const token = await this.getToken();
-    return HttpRequestor.delete(`${IdfyConfiguration.baseUrl}/${endpoint}`, token.access_token);
+    return HttpRequestor.delete(url, token.access_token);
   }
 
   private getToken(): Promise<any> {
@@ -76,8 +77,7 @@ export default abstract class IdfyBaseService {
       client_secret: clientSecret,
     };
 
-    const promise = HttpRequestor.postForm<any>(
-      `${IdfyConfiguration.baseUrl}/oauth/connect/token`, form);
+    const promise = HttpRequestor.postForm<any>(Urls.oauthToken, form);
 
     promise.then((res: any) => {
       this.oauthToken = res;

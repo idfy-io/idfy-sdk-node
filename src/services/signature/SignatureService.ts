@@ -1,17 +1,20 @@
 import IdfyBaseService from '../IdfyBaseService';
+import APIHelper from '../../infrastructure/APIHelper';
+import { CollectionWithPaging } from '../../model';
 import {
   Attachment,
   AttachmentOptions,
   Document,
   DocumentCreateOptions,
   DocumentStatusSummary,
-  DocumentUpdateOptions, ManualReminder, NotificationLogItem,
+  DocumentSummary,
+  DocumentUpdateOptions,
+  ManualReminder,
+  NotificationLogItem,
   Signer,
   SignerOptions
 } from './';
-import APIHelper from '../../infrastructure/APIHelper';
-import { DocumentSummary } from './model/DocumentSummary';
-import { CollectionWithPaging } from '../../model/CollectionWithPaging';
+import Urls from '../../infrastructure/Urls';
 
 export class SignatureService extends IdfyBaseService {
   private readonly _endpointBase: string = 'signature';
@@ -21,7 +24,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public getDocument(documentId: string): Promise<Document> {
-    return super.get<Document>(`${this._endpointBase}/documents/${documentId}`);
+    return super.get<Document>(`${Urls.signature}/documents/${documentId}`);
   }
 
   /**
@@ -29,7 +32,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentCreateOptions
    */
   public createDocument(documentCreateOptions: DocumentCreateOptions): Promise<Document> {
-    return super.post<Document>(`${this._endpointBase}/documents`, documentCreateOptions);
+    return super.post<Document>(`${Urls.signature}/documents`, documentCreateOptions);
   }
 
   /**
@@ -38,7 +41,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentUpdateOptions
    */
   public updateDocument(documentId: string, documentUpdateOptions: DocumentUpdateOptions): Promise<Document> {
-    return super.patch<Document>(`${this._endpointBase}/documents/${documentId}`, documentUpdateOptions);
+    return super.patch<Document>(`${Urls.signature}/documents/${documentId}`, documentUpdateOptions);
   }
 
   /**
@@ -48,7 +51,7 @@ export class SignatureService extends IdfyBaseService {
    */
   public cancelDocument(documentId: string, reason?: string): Promise<void> {
     const params = { reason };
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/cancel`, params);
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/cancel`, params);
     return super.post(url);
   }
 
@@ -57,7 +60,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public getDocumentStatus(documentId: string) : Promise<DocumentStatusSummary> {
-    return super.get<DocumentStatusSummary>(`${this._endpointBase}/documents/${documentId}/status`);
+    return super.get<DocumentStatusSummary>(`${Urls.signature}/documents/${documentId}/status`);
   }
 
   /**
@@ -65,7 +68,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public getDocumentSummary(documentId: string) : Promise<DocumentSummary> {
-    return super.get<DocumentSummary>(`${this._endpointBase}/documents/${documentId}/summary`);
+    return super.get<DocumentSummary>(`${Urls.signature}/documents/${documentId}/summary`);
   }
 
   /**
@@ -98,7 +101,7 @@ export class SignatureService extends IdfyBaseService {
     tags?: string,
     offset?: number,
     limit?: number): Promise<CollectionWithPaging<DocumentSummary>> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/summary`, {
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/summary`, {
       externalId,
       signerId,
       externalSignerId,
@@ -122,7 +125,7 @@ export class SignatureService extends IdfyBaseService {
    * @param signerId
    */
   public getSigner(documentId: string, signerId: string): Promise<Signer> {
-    return super.get<Signer>(`${this._endpointBase}/documents/${documentId}/signers/${signerId}`);
+    return super.get<Signer>(`${Urls.signature}/documents/${documentId}/signers/${signerId}`);
   }
 
   /**
@@ -131,7 +134,7 @@ export class SignatureService extends IdfyBaseService {
    * @param signerOptions
    */
   public createSigner(documentId: string, signerOptions: SignerOptions): Promise<Signer> {
-    return super.post<Signer>(`${this._endpointBase}/documents/${documentId}/signers`, signerOptions);
+    return super.post<Signer>(`${Urls.signature}/documents/${documentId}/signers`, signerOptions);
   }
 
   /**
@@ -140,7 +143,7 @@ export class SignatureService extends IdfyBaseService {
    * @param signerOptions
    */
   public updateSigner(documentId: string, signerOptions: SignerOptions): Promise<Signer> {
-    return super.patch<Signer>(`${this._endpointBase}/documents/${documentId}/signers`, signerOptions);
+    return super.patch<Signer>(`${Urls.signature}/documents/${documentId}/signers`, signerOptions);
   }
 
   /**
@@ -149,7 +152,7 @@ export class SignatureService extends IdfyBaseService {
    * @param signerId
    */
   public deleteSigner(documentId: string, signerId: string): Promise<void> {
-    return super.delete(`${this._endpointBase}/documents/${documentId}/signers/${signerId}`);
+    return super.delete(`${Urls.signature}/documents/${documentId}/signers/${signerId}`);
   }
 
   /**
@@ -157,7 +160,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public listSigners(documentId: string): Promise<Signer[]> {
-    return super.get<Signer[]>(`${this._endpointBase}/documents/${documentId}/signers`);
+    return super.get<Signer[]>(`${Urls.signature}/documents/${documentId}/signers`);
   }
 
   /**
@@ -166,7 +169,7 @@ export class SignatureService extends IdfyBaseService {
    * @param attachmentId
    */
   public getAttachment(documentId: string, attachmentId: string): Promise<Attachment> {
-    return super.get<Attachment>(`${this._endpointBase}/documents/${documentId}/attachments/${attachmentId}`);
+    return super.get<Attachment>(`${Urls.signature}/documents/${documentId}/attachments/${attachmentId}`);
   }
 
   /**
@@ -175,7 +178,7 @@ export class SignatureService extends IdfyBaseService {
    * @param attachmentOptions
    */
   public createAttachment(documentId: string, attachmentOptions: AttachmentOptions): Promise<Attachment> {
-    return super.post<Attachment>(`${this._endpointBase}/documents/${documentId}/attachments`, attachmentOptions);
+    return super.post<Attachment>(`${Urls.signature}/documents/${documentId}/attachments`, attachmentOptions);
   }
 
   /**
@@ -185,7 +188,7 @@ export class SignatureService extends IdfyBaseService {
    * @param attachmentOptions
    */
   public updateAttachment(documentId: string, attachmentId: string, attachmentOptions: AttachmentOptions): Promise<Attachment> {
-    return super.patch<Attachment>(`${this._endpointBase}/documents/${documentId}/attachments/${attachmentId}`, attachmentOptions);
+    return super.patch<Attachment>(`${Urls.signature}/documents/${documentId}/attachments/${attachmentId}`, attachmentOptions);
   }
 
   /**
@@ -194,7 +197,7 @@ export class SignatureService extends IdfyBaseService {
    * @param attachmentId
    */
   public deleteAttachment(documentId: string, attachmentId: string): Promise<void> {
-    return super.delete(`${this._endpointBase}/documents/${documentId}/attachments/${attachmentId}`);
+    return super.delete(`${Urls.signature}/documents/${documentId}/attachments/${attachmentId}`);
   }
 
   /**
@@ -202,7 +205,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public listAttachments(documentId: string): Promise<Attachment[]> {
-    return super.get<Attachment[]>(`${this._endpointBase}/documents/${documentId}/attachments`);
+    return super.get<Attachment[]>(`${Urls.signature}/documents/${documentId}/attachments`);
   }
 
   /**
@@ -211,7 +214,7 @@ export class SignatureService extends IdfyBaseService {
    * @param fileFormat
    */
   public getFile(documentId: string, fileFormat: string): Promise<Buffer> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files`, {
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files`, {
       fileFormat
     });
     return super.getBuffer(url);
@@ -224,7 +227,7 @@ export class SignatureService extends IdfyBaseService {
    * @param fileFormat
    */
   public getFileForSigner(documentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/signers/${signerId}`, {
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/signers/${signerId}`, {
       fileFormat
     });
     return super.getBuffer(url);
@@ -237,7 +240,7 @@ export class SignatureService extends IdfyBaseService {
    * @param fileFormat
    */
   public getAttachmentFile(documentId: string, attachmentId: string, fileFormat: string): Promise<Buffer> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/attachments/${attachmentId}`, {
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/attachments/${attachmentId}`, {
       fileFormat
     });
     return super.getBuffer(url);
@@ -251,7 +254,7 @@ export class SignatureService extends IdfyBaseService {
    * @param fileFormat
    */
   public getAttachmentFileForSigner(documentId: string, attachmentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/documents/${documentId}/files/attachments/${attachmentId}/signers/${signerId}`, {
+    const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/attachments/${attachmentId}/signers/${signerId}`, {
       fileFormat
     });
     return super.getBuffer(url);
@@ -262,7 +265,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    */
   public listNotifications(documentId: string): Promise<NotificationLogItem> {
-    return super.get<NotificationLogItem>(`${this._endpointBase}/documents/${documentId}/notifications`);
+    return super.get<NotificationLogItem>(`${Urls.signature}/documents/${documentId}/notifications`);
   }
 
   /**
@@ -271,20 +274,20 @@ export class SignatureService extends IdfyBaseService {
    * @param manualReminder
    */
   public sendReminders(documentId: string, manualReminder: ManualReminder): Promise<ManualReminder> {
-    return super.post(`${this._endpointBase}/documents/${documentId}/notifications/reminder`, manualReminder);
+    return super.post(`${Urls.signature}/documents/${documentId}/notifications/reminder`, manualReminder);
   }
 
   /**
    * Returns a list of all color themes that can be used in the signature application.
    */
   public listThemes(): Promise<string[]> {
-    return super.get<string[]>(`${this._endpointBase}/themes/list/themes`);
+    return super.get<string[]>(`${Urls.signature}/themes/list/themes`);
   }
 
   /**
    * Returns a list of all spinners that can be used in the signature application.
    */
   public listSpinners(): Promise<string[]> {
-    return super.get<string[]>(`${this._endpointBase}/themes/list/spinners`);
+    return super.get<string[]>(`${Urls.signature}/themes/list/spinners`);
   }
 }

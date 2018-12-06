@@ -10,7 +10,6 @@ export class IdfyClient {
 
   constructor(clientId: string, clientSecret: string, scopes: any[]) {
     IdfyConfiguration.setClientCredentials(clientId, clientSecret, scopes);
-    IdfyConfiguration.baseUrl = 'https://api.idfy.io';
 
     this.identificationService = new IdentificationService();
     this.signatureService = new SignatureService();

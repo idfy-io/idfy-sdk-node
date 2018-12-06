@@ -1,15 +1,17 @@
 import IdfyBaseService from '../IdfyBaseService';
+import APIHelper from '../../infrastructure/APIHelper';
+import Urls from '../../infrastructure/Urls';
 import {
   Event,
-  EventTypeInfo, MockEventRequest,
-  Webhook, WebhookDelivery, WebhookUpdateOptions
+  EventTypeInfo,
+  MockEventRequest,
+  Webhook,
+  WebhookDelivery,
+  WebhookUpdateOptions,
+  WebhookCreateOptions
 } from './';
-import APIHelper from '../../infrastructure/APIHelper';
-import { WebhookCreateOptions } from './model/WebhookCreateOptions';
 
 export class NotificationService extends IdfyBaseService {
-  private readonly _endpointBase: string = 'notification';
-
   /**
    * Retrieves up to 100 unhandled events for your account. After you retrieve this list the events will be "locked" for 10 minutes
    * to give you time to handle them.
@@ -18,7 +20,7 @@ export class NotificationService extends IdfyBaseService {
    * @param tags
    */
   public listUnhandledEvents(eventType?: string, tags?: string): Promise<Event[]> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/events`, {
+    const url = APIHelper.appendQueryParams(`${Urls.notification}/events`, {
       eventType,
       tags
     });
@@ -30,7 +32,7 @@ export class NotificationService extends IdfyBaseService {
    * @param eventId
    */
   public handleEvent(eventId: string): Promise<void> {
-    return super.post(`${this._endpointBase}/events/${eventId}/handle`);
+    return super.post(`${Urls.notification}/events/${eventId}/handle`);
   }
 
   /**
@@ -38,7 +40,7 @@ export class NotificationService extends IdfyBaseService {
    * @param eventIds
    */
   public handleMultipleEvents(eventIds: string[]): Promise<void> {
-    return super.post(`${this._endpointBase}/events/handle`, eventIds);
+    return super.post(`${Urls.notification}/events/handle`, eventIds);
   }
 
   /**
@@ -47,7 +49,7 @@ export class NotificationService extends IdfyBaseService {
    * @param tags
    */
   public peekEvents(eventType?: string, tags?: string): Promise<Event[]> {
-    const url = APIHelper.appendQueryParams(`${this._endpointBase}/events/peek`, {
+    const url = APIHelper.appendQueryParams(`${Urls.notification}/events/peek`, {
       eventType,
       tags
     });
@@ -58,14 +60,14 @@ export class NotificationService extends IdfyBaseService {
    * Clears all events for your account.
    */
   public clearEvents(): Promise<void> {
-    return super.post(`${this._endpointBase}/events/clear`);
+    return super.post(`${Urls.notification}/events/clear`);
   }
 
   /**
    * Returns a list of all available event types.
    */
   public listEventTypes(): Promise<EventTypeInfo[]> {
-    return super.get<EventTypeInfo[]>(`${this._endpointBase}/events/types`);
+    return super.get<EventTypeInfo[]>(`${Urls.notification}/events/types`);
   }
 
   /**
@@ -73,7 +75,7 @@ export class NotificationService extends IdfyBaseService {
    * @param mockEventRequest
    */
   public mockEvent(mockEventRequest: MockEventRequest): Promise<Event> {
-    return super.post<Event>(`${this._endpointBase}/events/mock`, mockEventRequest);
+    return super.post<Event>(`${Urls.notification}/events/mock`, mockEventRequest);
   }
 
   /**
@@ -81,15 +83,15 @@ export class NotificationService extends IdfyBaseService {
    * @param id
    */
   public getWebhook(id: number): Promise<Webhook> {
-    return super.get<Webhook>(`${this._endpointBase}/webhooks/${id}`);
+    return super.get<Webhook>(`${Urls.notification}/webhooks/${id}`);
   }
 
   /**
    * Deletes the specified webhook.
    * @param id
    */
-  public deleteWebhook(id: number): Promise<void>{
-    return super.delete(`${this._endpointBase}/webhooks/${id}`);
+  public deleteWebhook(id: number): Promise<void> {
+    return super.delete(`${Urls.notification}/webhooks/${id}`);
   }
 
   /**
@@ -98,14 +100,14 @@ export class NotificationService extends IdfyBaseService {
    * @param webhookUpdateOptions
    */
   public updateWebhook(id: number, webhookUpdateOptions: WebhookUpdateOptions): Promise<Webhook> {
-    return super.patch<Webhook>(`${this._endpointBase}/webhooks/${id}`, webhookUpdateOptions);
+    return super.patch<Webhook>(`${Urls.notification}/webhooks/${id}`, webhookUpdateOptions);
   }
 
   /**
    * Returns a list of all your webhooks.
    */
   public listWebhooks(): Promise<Webhook[]> {
-    return super.get<Webhook[]>(`${this._endpointBase}/webhooks`);
+    return super.get<Webhook[]>(`${Urls.notification}/webhooks`);
   }
 
   /**
@@ -113,7 +115,7 @@ export class NotificationService extends IdfyBaseService {
    * @param webhookCreateOptions
    */
   public createWebhook(webhookCreateOptions: WebhookCreateOptions): Promise<Webhook> {
-    return super.post<Webhook>(`${this._endpointBase}/webhooks`, webhookCreateOptions);
+    return super.post<Webhook>(`${Urls.notification}/webhooks`, webhookCreateOptions);
   }
 
   /**
@@ -121,7 +123,7 @@ export class NotificationService extends IdfyBaseService {
    * @param id
    */
   public pingWebhook(id: number): Promise<void> {
-    return super.post(`${this._endpointBase}/webhooks/${id}/ping`);
+    return super.post(`${Urls.notification}/webhooks/${id}/ping`);
   }
 
   /**
@@ -129,6 +131,6 @@ export class NotificationService extends IdfyBaseService {
    * @param id
    */
   public listWebhookDeliveries(id: number): Promise<WebhookDelivery[]> {
-    return super.get<WebhookDelivery[]>(`${this._endpointBase}/webhooks/${id}/deliveries`);
+    return super.get<WebhookDelivery[]>(`${Urls.notification}/webhooks/${id}/deliveries`);
   }
 }
