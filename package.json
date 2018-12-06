@@ -1,6 +1,6 @@
 {
   "name": "@idfy/sdk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Node.js SDK for Idfy REST API",
   "author": "Idfy Norge AS",
   "license": "Apache-2.0",
