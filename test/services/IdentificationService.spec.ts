@@ -1,12 +1,11 @@
 import { expect } from 'chai';
+import * as request from 'request';
 import IdfyConfiguration from '../../src/IdfyConfiguration';
 import {
-  CreateBankIDMobileRequest,
   CreateIdentificationRequest,
   IdentificationService
 } from '../../src/services/identification';
 import { HttpRequestor } from '../../src/infrastructure/HttpRequestor';
-import * as request from 'request';
 
 IdfyConfiguration.setClientCredentials('idfy-test', 'foobar', []);
 IdfyConfiguration.baseUrl = 'http://localhost:5000';

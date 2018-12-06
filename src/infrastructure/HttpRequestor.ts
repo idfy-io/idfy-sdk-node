@@ -89,7 +89,7 @@ export class HttpRequestor {
       reqOptions.form = form;
     }
 
-    this.lastRequest = reqOptions;
+    this.lastRequest = { ...reqOptions };
 
     return new Promise<T>((resolve, reject) => {
       request(reqOptions, (err, response, body) => {

@@ -1,6 +1,5 @@
 import { HttpRequestor } from '../infrastructure/HttpRequestor';
 import IdfyConfiguration from '../IdfyConfiguration';
-import HttpRequestMethod from '../infrastructure/HttpRequestMethod';
 
 interface OAuthToken {
   accessToken: string;
