@@ -5,6 +5,7 @@ dotnet: 2.1
 env:
   global:
     - IDFY_MOCK_SERVER_VERSION=0.0.3
+    - NODE_VERSION=8
 
 before_install:
   # Download, unpack and run the Idfy Mock Server
@@ -15,11 +16,11 @@ before_install:
     dotnet "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}/Idfy.MockServer.dll" &
 
 install:
-  - nvm install 8.0.0
-  - nvm use 8.0.0
+  - nvm install ${NODE_VERSION}
+  - nvm use ${NODE_VERSION}
+  - yarn install
 
 script:
-  - yarn
   - yarn test
 
 deploy:
@@ -30,6 +31,7 @@ deploy:
       tags: true
   # Push package to npmjs.com
   - provider: npm
+    skip_cleanup: true
     email: support@idfy.io
     api_key: $NPM_TOKEN
     on:
