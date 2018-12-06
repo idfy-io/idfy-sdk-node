@@ -2,6 +2,10 @@ language: csharp
 mono: none
 dotnet: 2.1
 
+env:
+  global:
+    - IDFY_MOCK_SERVER_VERSION=0.0.3
+
 before_install:
   # Download, unpack and run the Idfy Mock Server
   - |
