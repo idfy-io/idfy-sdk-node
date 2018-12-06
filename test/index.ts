@@ -13,6 +13,8 @@ before(function () {
         if (err) {
           return reject(err);
         }
+
+        console.log('✓ Idfy Mock Server running');
         return resolve();
       });
     });
