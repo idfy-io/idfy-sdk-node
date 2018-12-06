@@ -1,13 +1,9 @@
 import { expect } from 'chai';
 import { assertRequest } from '../../test-utils/assertRequest';
-import IdfyConfiguration from '../../src/IdfyConfiguration';
 import {
   CreateIdentificationRequest,
   IdentificationService
 } from '../../src/services/identification';
-
-IdfyConfiguration.setClientCredentials('idfy-test', 'foobar', []);
-IdfyConfiguration.baseUrl = 'http://localhost:5000';
 
 const service = new IdentificationService();
 
