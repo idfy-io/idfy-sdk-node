@@ -1,6 +1,6 @@
 # Idfy Node.js SDK
 [![Build Status](https://travis-ci.org/idfy-io/idfy-sdk-node.svg?branch=master)](https://travis-ci.org/idfy-io/idfy-sdk-node) 
-![npm (scoped)](https://img.shields.io/npm/v/@idfy/sdk.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@idfy/sdk.svg)](https://www.npmjs.com/package/@idfy/sdk)
 
 A Node.js SDK for simple integration with the Idfy REST API.
 
