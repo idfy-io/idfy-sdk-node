@@ -27,6 +27,7 @@ deploy:
   # Create GitHub release on new version:
   - provider: releases
     api_key: $GITHUB_OAUTH_TOKEN
+    name: $TRAVIS_TAG
     on:
       tags: true
   # Push package to npmjs.com
