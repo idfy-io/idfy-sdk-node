@@ -26,7 +26,7 @@
     "prepublishOnly": "yarn run build",
     "build": "tsc",
     "lint": "tslint -p tsconfig.json",
-    "test": "yarn run lint && mocha -r ts-node/register test/**/*.ts"
+    "test": "yarn run lint && mocha --opts test/mocha.opts"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
