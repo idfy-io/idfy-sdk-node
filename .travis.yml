@@ -2,11 +2,6 @@ language: csharp
 mono: none
 dotnet: 2.1
 
-env:
-  global:
-    - NODE_VERSION = 8
-    - IDFY_MOCK_SERVER_VERSION=0.0.3
-
 before_install:
   # Download, unpack and run the Idfy Mock Server
   - |
@@ -16,8 +11,8 @@ before_install:
     dotnet "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}/Idfy.MockServer.dll" &
 
 install:
-  - nvm install $NODE_VERSION
-  - nvm use $NODE_VERSION
+  - nvm install 8.0.0
+  - nvm use 8.0.0
 
 script:
   - yarn
