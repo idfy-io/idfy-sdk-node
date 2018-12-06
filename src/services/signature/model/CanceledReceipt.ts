@@ -1,5 +1,5 @@
 import { Email } from './Email';
-import { SMS } from './Sms';
+import { SMS } from './SMS';
 
 export interface CanceledReceipt {
   /**
