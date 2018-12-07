@@ -1,6 +1,6 @@
 import { HttpRequestor } from '../src/infrastructure/HttpRequestor';
 import { expect } from 'chai';
-import IdfyConfiguration from '../src/IdfyConfiguration';
+import { IdfyConfiguration } from '../src';
 
 export function assertRequest(
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE', path: string, body?: any) {

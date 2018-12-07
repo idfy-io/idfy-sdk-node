@@ -1,5 +1,5 @@
 import { HttpRequestor } from '../infrastructure/HttpRequestor';
-import IdfyConfiguration from '../IdfyConfiguration';
+import { IdfyConfiguration } from '../IdfyConfiguration';
 import Urls from '../infrastructure/Urls';
 
 interface OAuthToken {

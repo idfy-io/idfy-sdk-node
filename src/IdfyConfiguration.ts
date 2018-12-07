@@ -1,7 +1,7 @@
 import Urls from './infrastructure/Urls';
 const { version } = require('../package.json');
 
-export default class IdfyConfiguration {
+export class IdfyConfiguration {
   public static clientId: string = '';
   public static clientSecret: string = '';
   public static scopes: any[] = [];

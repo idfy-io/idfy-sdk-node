@@ -1,9 +1,8 @@
 /**
  * Global hook to make sure that the Idfy Mock Server is running
  */
-
 import * as request from 'request';
-import IdfyConfiguration from '../src/IdfyConfiguration';
+import { IdfyConfiguration } from '../src';
 
 IdfyConfiguration.setClientCredentials('idfy-test', 'foobar', []);
 IdfyConfiguration.baseUrl = 'http://localhost:5000';

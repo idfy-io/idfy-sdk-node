@@ -1,4 +1,4 @@
-import IdfyConfiguration from '../IdfyConfiguration';
+import { IdfyConfiguration } from '../IdfyConfiguration';
 
 export default class Urls {
   public static defaultBaseUrl = 'https://api.idfy.io';

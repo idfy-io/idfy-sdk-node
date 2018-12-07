@@ -1,4 +1,4 @@
-import IdfyConfiguration from './IdfyConfiguration';
+import { IdfyConfiguration } from './IdfyConfiguration';
 import { IdentificationService } from './services/identification';
 import { SignatureService } from './services/signature';
 import { NotificationService } from './services/notification';
