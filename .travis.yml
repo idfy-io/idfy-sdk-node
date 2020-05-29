@@ -5,7 +5,7 @@ dotnet: 2.1
 env:
   global:
     - IDFY_MOCK_SERVER_VERSION=0.0.8
-    - NODE_VERSION=8
+    - NODE_VERSION=10
 
 before_install:
   # Download, unpack and run the Idfy Mock Server
