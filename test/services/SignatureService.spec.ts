@@ -13,4 +13,12 @@ describe('Signature Service', () => {
       });
     });
   });
+  describe('getFile', () => {
+    it('sends the correct request', () => {
+      return service.getFile('123', 'pades').then((result) => {
+        expect(result).to.exist;
+        assertRequest('GET', '/signature/documents/123/files?fileFormat=pades');
+      });
+    });
+  });
 });

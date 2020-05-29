@@ -41,6 +41,6 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
-    "request": "^2.88.0"
+    "got": "^11.1.4"
   }
 }

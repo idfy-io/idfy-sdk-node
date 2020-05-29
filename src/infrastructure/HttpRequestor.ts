@@ -1,10 +1,10 @@
-import * as request from 'request';
+import got, { Response } from 'got';
 import HttpRequestMethod from './HttpRequestMethod';
 import IdfyResponse from './IdfyResponse';
 import HttpRequestOptions from './HttpRequestOptions';
 
 export class HttpRequestor {
-  public static lastRequest?: (request.CoreOptions & request.UriOptions) = undefined;
+  public static lastRequest?: any = undefined;
 
   public static get<T>(url: string, token?: string): Promise<T> {
     return this.makeRequest<T>({
@@ -70,45 +70,47 @@ export class HttpRequestor {
   private static makeRequest<T>(options: HttpRequestOptions): Promise<T> {
     const { url, method, token, body, form, disableEncoding } = options;
 
-    const reqOptions: (request.CoreOptions & request.UriOptions) = {
-      uri: url,
-      method: method.toString(),
-      json: true,
-      encoding: disableEncoding ? null : undefined
+    const requestOptions: any = {
+      url,
+      method,
+      throwHttpErrors: false,
+      responseType: disableEncoding ? 'buffer' : 'json',
     };
 
     if (token) {
-      reqOptions.headers = {
-        Authorization: `Bearer ${token}`,
+      requestOptions.headers = {
+        authorization: `Bearer ${token}`
       };
     }
 
     if (body) {
-      reqOptions.body = body;
+      requestOptions.json = body;
     } else if (form) {
-      reqOptions.form = form;
+      requestOptions.form = form;
     }
 
-    this.lastRequest = { ...reqOptions };
+    this.lastRequest = { ...requestOptions };
 
-    return new Promise<T>((resolve, reject) => {
-      request(reqOptions, (err, response, body) => {
-        if (err) {
-          reject(err);
-        } else if (!this.isSuccess(response.statusCode)) {
-          reject(this.buildError(response, body));
+    return new Promise<T>(async (resolve, reject) => {
+      try {
+        const response = await got<T>(requestOptions);
+        if (!this.isSuccess(response.statusCode)) {
+          reject(this.buildError(response));
         } else {
-          resolve(<T>body);
+          resolve(response.body);
         }
-      });
+      } catch (err) {
+        reject(err);
+      }
     });
   }
 
-  private static buildError(response: request.Response, body: any): IdfyResponse {
+  private static buildError(response: Response): IdfyResponse {
     return {
-      body,
+      body: response.body,
       statusCode: response.statusCode,
-      requestUrl: response.request.href,
+      requestUrl: response.request.requestUrl,
+      requestId: <string> response.headers['requestid'],
     };
   }
 

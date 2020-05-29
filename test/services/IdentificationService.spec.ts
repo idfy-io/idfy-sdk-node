@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { assertRequest } from '../../test-utils/assertRequest';
 import {
+  CreateBankIDMobileRequest,
   CreateIdentificationRequest,
   IdentificationService
 } from '../../src/services/identification';
@@ -39,7 +40,7 @@ describe('Identification Service', () => {
   describe('invalidateSession', () => {
     it('sends the correct request', () => {
       return service.invalidateSession('123').then((result) => {
-        expect(result).to.not.exist;
+        expect(result).to.be.empty;
         assertRequest('PUT', '/identification/session/invalidate');
       });
     });
@@ -65,13 +66,13 @@ describe('Identification Service', () => {
   });
 
   // todo: Enable test when Swagger is updated with this endpoint
-  // describe('createBankIdMobileSession', () => {
-  //   it('sends the correct request', () => {
-  //     const request = <CreateBankIDMobileRequest> {};
-  //     return service.createBankIdMobileSession(request).then((result) => {
-  //       expect(result).to.exist;
-  //       assertRequest('POST', '/identification/log/requestId/123', request);
-  //     });
-  //   });
-  // });
+  describe('createBankIdMobileSession', () => {
+    it('sends the correct request', () => {
+      const request = <CreateBankIDMobileRequest> {};
+      return service.createBankIdMobileSession(request).then((result) => {
+        expect(result).to.exist;
+        assertRequest('POST', '/identification/no/bankid/mobile', request);
+      });
+    });
+  });
 });

@@ -10,7 +10,7 @@ export function assertRequest(
     return;
   }
 
-  expect(`${IdfyConfiguration.baseUrl}${path}`).to.equal(lastRequest.uri);
+  expect(`${IdfyConfiguration.baseUrl}${path}`).to.equal(lastRequest.url);
   expect(lastRequest.method).to.equal(method);
-  expect(lastRequest.body).to.deep.equal(body);
+  expect(lastRequest.json).to.deep.equal(body);
 }
