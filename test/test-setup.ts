@@ -5,7 +5,7 @@ import got from 'got';
 import { IdfyConfiguration } from '../src';
 
 IdfyConfiguration.setClientCredentials('idfy-test', 'foobar', []);
-IdfyConfiguration.baseUrl = 'http://localhost:8111';
+IdfyConfiguration.baseUrl = 'http://localhost:5000';
 
 before(async function () {
   this.timeout(6000);
