@@ -2,13 +2,13 @@ export interface IFrameSettings {
   /**
    * The domain of the site hosting the iframe, this is used for the CSP policy and must be correct.
    */
-  domain: string;
+  Domain: string;
   /**
    * Whether web messaging should be used for redirect of the iframe parent.
    */
-  webMessaging?: boolean;
+  WebMessaging?: boolean;
   /**
    * Height of the frame when used in iframe.
    */
-  height?: number;
+  Height?: number;
 }

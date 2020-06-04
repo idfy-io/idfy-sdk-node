@@ -2,10 +2,10 @@ export interface EnvironmentInfo {
   /**
    * The users user-agent (browser/device)
    */
-  userAgent?: string;
+  UserAgent?: string;
 
   /**
    * The IP-address of the user
    */
-  ipAddress?: string;
+  IPAddress?: string;
 }
