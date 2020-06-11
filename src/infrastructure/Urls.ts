@@ -26,4 +26,8 @@ export default class Urls {
   public static get notification(): string {
     return `${this.baseUrl}/notification`;
   }
+
+  public static get identificationv2(): string {
+    return `${this.baseUrl}/identification/v2`;
+  }
 }
