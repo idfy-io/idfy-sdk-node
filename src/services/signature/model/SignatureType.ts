@@ -11,8 +11,21 @@ export interface SignatureType {
 }
 
 export namespace SignatureType {
-  export type SignatureMethodsEnum = 'no_bankid' | 'no_bankid_mobile' | 'no_bankid_netcentric' | 'no_buypass' |
-    'no_commfides' | 'se_bankid' | 'dk_nemid' | 'fi_tupas' | 'fi_mobiilivarmenne' | 'nl_digid' | 'es_dni'
-    | 'ee_esteid' | 'mobile_connect' | 'sms_otp' | 'identification_papers' | 'social' | 'unknown';
-  export type MechanismEnum = 'pkisignature' | 'eaccept';
+  export type SignatureMethodsEnum =
+    'no_bankid_mobile' |
+    'no_bankid_netcentric' |
+    'no_buypass' |
+    'se_bankid' |
+    'dk_nemid' |
+    'fi_tupas' |
+    'fi_mobiilivarmenne' |
+    'fi_eid' |
+    'sms_otp' |
+    'unknown';
+
+  export type MechanismEnum =
+    'pkisignature' |
+    'identification' |
+    'handwritten' |
+    'handwritten_with_identification';
 }
