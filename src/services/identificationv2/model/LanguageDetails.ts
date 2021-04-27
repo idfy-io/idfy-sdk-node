@@ -11,5 +11,5 @@ export interface LanguageDetails {
 }
 
 export namespace LanguageDetails {
-  export type Language = 'en' | 'no' | 'sv' | 'da';
+  export type Language = 'en' | 'no' | 'sv' | 'da' | 'fi' | 'de';
 }

@@ -27,5 +27,5 @@ export interface AppIdProvider {
 
 export namespace AppIdProvider {
   export type IdProviderType = 'no_bankid_netcentric' | 'no_bankid_mobile' | 'se_bankid' | 'no_buypass' | 'dk_nemid' |
-    'fi_eid' | 'sms_otp' | 'freja' | 'github' | 'google' | ' linkedin';
+    'fi_eid' | 'sms_otp' | 'freja' | 'github' | 'google' | ' linkedin' | 'microsoft' | 'itsme' | 'idin' | 'digid' | 'eherkenning';
 }
