@@ -11,6 +11,9 @@ import {
   LogItemList,
 } from './';
 
+/**
+ * @deprecated Use IdentificationV2Service instead.
+ */
 export class IdentificationService extends IdfyBaseService {
   /**
    * Retrieves the response of a single identification session.
