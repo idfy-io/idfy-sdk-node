@@ -8,8 +8,8 @@ A Node.js SDK for simple integration with the Idfy REST API.
 	npm install @idfy/sdk --save 
 
 ## Documentation
-- [Idfy REST API Reference](https://developer.idfy.io/api)
-- [Idfy Developer Documentation](https://developer.idfy.io/docs)
+- [Idfy REST API Reference](https://developer.signicat.com/express/apis/overview.html)
+- [Idfy Developer Documentation](https://developer.signicat.com/express/docs/)
 
 
 ## Sample Usage
@@ -45,4 +45,4 @@ const client: IdfyClient = new IdfyClient(/* ... /*);
 
 ## Support
 - Open an [issue](https://github.com/idfy-io/idfy-sdk-node/issues) to report bugs or submit feature requests.
-- For other support requests, visit our [support page](https://support.idfy.io) or contact us at [support@idfy.io](mailto:support@idfy.io).
+- For other support requests, visit our [support page](https://www.signicat.com/en/contact#support) or contact us at [support@signicat.com](mailto:support@signicat.com).
