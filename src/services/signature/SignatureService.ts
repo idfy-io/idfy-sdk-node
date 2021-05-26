@@ -140,10 +140,11 @@ export class SignatureService extends IdfyBaseService {
   /**
    * Updates a signer.
    * @param documentId
+   * @param signerId
    * @param signerOptions
    */
-  public updateSigner(documentId: string, signerOptions: SignerOptions): Promise<Signer> {
-    return super.patch<Signer>(`${Urls.signature}/documents/${documentId}/signers`, signerOptions);
+  public updateSigner(documentId: string, signerId: string, signerOptions: SignerOptions): Promise<Signer> {
+    return super.patch<Signer>(`${Urls.signature}/documents/${documentId}/signers/${signerId}`, signerOptions);
   }
 
   /**
