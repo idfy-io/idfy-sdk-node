@@ -9,6 +9,7 @@ import {
   DocumentStatusSummary,
   DocumentSummary,
   DocumentUpdateOptions,
+  FileRequest,
   ManualReminder,
   NotificationLogItem,
   Signer,
@@ -214,7 +215,7 @@ export class SignatureService extends IdfyBaseService {
    * @param documentId
    * @param fileFormat
    */
-  public getFile(documentId: string, fileFormat: string): Promise<Buffer> {
+  public getFile(documentId: string, fileFormat: FileRequest.FileFormatEnum): Promise<Buffer> {
     const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files`, {
       fileFormat
     });
@@ -227,7 +228,7 @@ export class SignatureService extends IdfyBaseService {
    * @param signerId
    * @param fileFormat
    */
-  public getFileForSigner(documentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
+  public getFileForSigner(documentId: string, signerId: string, fileFormat: FileRequest.SignerFileFormatEnum): Promise<Buffer> {
     const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/signers/${signerId}`, {
       fileFormat
     });
@@ -240,7 +241,7 @@ export class SignatureService extends IdfyBaseService {
    * @param attachmentId
    * @param fileFormat
    */
-  public getAttachmentFile(documentId: string, attachmentId: string, fileFormat: string): Promise<Buffer> {
+  public getAttachmentFile(documentId: string, attachmentId: string, fileFormat: FileRequest.AttachmentFileFormatEnum): Promise<Buffer> {
     const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/attachments/${attachmentId}`, {
       fileFormat
     });
@@ -254,7 +255,11 @@ export class SignatureService extends IdfyBaseService {
    * @param signerId
    * @param fileFormat
    */
-  public getAttachmentFileForSigner(documentId: string, attachmentId: string, signerId: string, fileFormat: string): Promise<Buffer> {
+  public getAttachmentFileForSigner(
+    documentId: string,
+    attachmentId: string,
+    signerId: string,
+    fileFormat: FileRequest.SignerAttachmentFileFormatEnum): Promise<Buffer> {
     const url = APIHelper.appendQueryParams(`${Urls.signature}/documents/${documentId}/files/attachments/${attachmentId}/signers/${signerId}`, {
       fileFormat
     });

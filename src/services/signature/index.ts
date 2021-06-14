@@ -20,6 +20,7 @@ export * from './model/ExpiredReceipt';
 export * from './model/ExtendedDocumentSignature';
 export * from './model/ExtraInfoDocumentRequest';
 export * from './model/ExtraInfoSignerRequest';
+export * from './model/FileRequest';
 export * from './model/FinalReceipt';
 export * from './model/ResourceLink';
 export * from './model/ManualReminder';
