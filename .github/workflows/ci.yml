@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+env:
+  IDFY_MOCK_SERVER_VERSION: 0.0.8
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '10'
+
+      - name: Start mock server
+        run: |
+          mkdir -p idfy-mock-server/idfy-mock-server_$IDFY_MOCK_SERVER_VERSION/
+          curl -L "https://github.com/idfy-io/idfy-mock-server/releases/download/v$IDFY_MOCK_SERVER_VERSION/idfy-mock-server_$IDFY_MOCK_SERVER_VERSION.zip" -o "idfy-mock-server/idfy-mock-server_${IDFY_MOCK_SERVER_VERSION}.zip"
+          unzip "idfy-mock-server/idfy-mock-server_$IDFY_MOCK_SERVER_VERSION.zip" -d "idfy-mock-server/idfy-mock-server_$IDFY_MOCK_SERVER_VERSION/"
+          dotnet "idfy-mock-server/idfy-mock-server_$IDFY_MOCK_SERVER_VERSION/Idfy.MockServer.dll" &
+      - name: Run tests
+        run: yarn && yarn test
