@@ -14,6 +14,11 @@ export interface PadesSettings {
    */
   padesTemplateId?: string;
 
+  /**
+   * If you set this to true, the signer's SSN / national ID will be visible in the PAdES file,
+   * and in the standard_packaging files.
+   */
+  includeSsnInPades?: boolean;
 }
 export namespace PadesSettings {
   export type PrimaryLanguageEnum = 'EN' | 'NO' | 'DA' | 'SV' | 'FI';
