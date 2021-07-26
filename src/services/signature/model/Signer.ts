@@ -90,4 +90,10 @@ export interface Signer {
    * time-to-live for the URL. Defaults to the lifetime of the document.
    */
   signUrlExpires?: Date;
+
+  /**
+   * Get social security number for this signer only (The global variable advanced.getSocialSecurityNumber
+   * will override this when set to true). Requires certificate with permission to retrieve social security number.
+   */
+  getSocialSecurityNumber?: boolean;
 }

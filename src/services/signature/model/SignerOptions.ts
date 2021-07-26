@@ -69,4 +69,9 @@ export interface SignerOptions {
    */
   signUrlExpires?: Date;
 
+  /**
+   * Get social security number for this signer only (The global variable advanced.getSocialSecurityNumber
+   * will override this when set to true). Requires certificate with permission to retrieve social security number.
+   */
+  getSocialSecurityNumber?: boolean;
 }
