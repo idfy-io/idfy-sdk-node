@@ -22,6 +22,11 @@ export interface DataToSign {
   title?: string;
 
   /**
+   * The document description.
+   */
+  description?: string;
+
+  /**
    * Determines if the document should be converted to PDF. Supported formats are word documents, rich text format,
    * and OpenOffice (.doc, .docx, .rtf, .odt, .ott).
    * Remark: When using this, the converted document (and not the original) is the one that will be signed.
