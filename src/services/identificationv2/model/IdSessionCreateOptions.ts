@@ -53,7 +53,7 @@ export interface IdSessionCreateOptions {
 
 export namespace IdSessionCreateOptions {
   export type IdProviderType = 'no_bankid_netcentric' | 'no_bankid_mobile' | 'se_bankid' | 'no_buypass' | 'dk_nemid' |
-    'fi_eid' | 'sms_otp' | 'freja' | 'github' | 'google' | ' linkedin';
+    'ftn' | 'sms_otp' | 'freja' | 'github' | 'google' | ' linkedin';
 
   export type Language = 'en' | 'no' | 'sv' | 'da' | 'fi' | 'de';
 
